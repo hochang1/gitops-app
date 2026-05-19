@@ -1,21 +1,21 @@
-name: CI ops-app1
+name: CI ops-app2
 
 on:
   push:
     branches: [main]
     paths:
-      - 'ops-app1/**'
-      - '.github/workflows/ci-ops-app1.yml'
+      - 'ops-app2/**'
+      - '.github/workflows/ci-ops-app2.yaml'
   pull_request:
     branches: [main]
     paths:
-      - 'ops-app1/**'
+      - 'ops-app2/**'
 
 env:
-  APP_NAME: ops-app1
-  DOCKERHUB_IMAGE: hochang1/ops-app1
+  APP_NAME: ops-app2
+  DOCKERHUB_IMAGE: hochang1/ops-app2
   CONFIG_REPO: hochang1/gitops-config
-  CONFIG_REPO_PATH: apps/ops-app1/overlays
+  CONFIG_REPO_PATH: apps/ops-app2/overlays
 
 permissions:
   contents: read
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-24.04
     defaults:
       run:
-        working-directory: ./ops-app1     # 모노리포의 ops-app1 디렉토리
+        working-directory: ./ops-app2     # 모노리포의 ops-app1 디렉토리
     outputs:
       image-tag: ${{ steps.tag.outputs.tag }}
 
@@ -60,7 +60,7 @@ jobs:
       - name: Docker 빌드 및 Push
         uses: docker/build-push-action@v5
         with:
-          context: ./ops-app1                      # 모노리포 경로 명시
+          context: ./ops-app2                      # 모노리포 경로 명시
           push: true
           tags: |
             ${{ env.DOCKERHUB_IMAGE }}:${{ steps.tag.outputs.tag }}
