@@ -12,7 +12,7 @@ server:
 
 app:
   profile: ${PROFILE:default}
-  ops-app2-url: ${OPS_APP2_URL:<http://ops-app2:8081>}
+  ops-app2-url: ${OPS_APP2_URL:http://ops-app2:8081}
 
 management:
   endpoints:
