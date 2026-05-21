@@ -42,7 +42,7 @@ public class LoadController {
                 while (System.currentTimeMillis() - start < 2000) {
                     sum += random.nextLong();
                 }
-                return "cpu load done, sum=" + sum;
+                return "cpu load Done, sum=" + sum;
 
             default:
                 return "normal response";
